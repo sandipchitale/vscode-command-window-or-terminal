@@ -3,7 +3,7 @@
     "displayName": "Open external command window or terminal.",
     "icon": "images/icon.png",
     "description": "VS Code extention to open selected folder or selected file's folder in external command window or terminal.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "sandipchitale",
     "author": {
         "name": "Sandip Chitale"
@@ -41,6 +41,18 @@
         ],
         "menus": {
             "editor/context": [
+                {
+                    "command": "command-window-or-terminal.open.windows",
+                    "when": "isWindows && isFileSystemResource",
+                    "group": "navigation"
+                },
+                {
+                    "command": "command-window-or-terminal.open.nonwindows",
+                    "when": "(isLinux || isMac) && isFileSystemResource",
+                    "group": "navigation"
+                }
+            ],
+            "editor/title/context": [
                 {
                     "command": "command-window-or-terminal.open.windows",
                     "when": "isWindows && isFileSystemResource",
