@@ -1,0 +1,82 @@
+{
+    "name": "vscode-command-window-or-terminal",
+    "displayName": "Open external command window or terminal.",
+    "icon": "images/icon.png",
+    "description": "VS Code extention to open selected folder or selected file's folder in external command window or terminal.",
+    "version": "1.0.0",
+    "publisher": "sandipchitale",
+    "author": {
+        "name": "Sandip Chitale"
+    },
+    "maintainers": [
+        "Sandip Chitale <sandipchitale@gmail.com>"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sandipchitale/vscode-command-window-or-terminal.git"
+    },
+    "engines": {
+        "vscode": "^1.30.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:command-window-or-terminal.open.windows",
+        "onCommand:command-window-or-terminal.open.nonwindows"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "command-window-or-terminal.open.windows",
+                "title": "Open in command window",
+                "category": "Desktop Integration"
+            },
+            {
+                "command": "command-window-or-terminal.open.nonwindows",
+                "title": "Open in terminal",
+                "category": "Desktop Integration"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "command-window-or-terminal.open.windows",
+                    "when": "isWindows && isFileSystemResource",
+                    "group": "navigation"
+                },
+                {
+                    "command": "command-window-or-terminal.open.nonwindows",
+                    "when": "(isLinux || isMac) && isFileSystemResource",
+                    "group": "navigation"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "command": "command-window-or-terminal.open.windows",
+                    "when": "isWindows && isFileSystemResource",
+                    "group": "navigation"
+                },
+                {
+                    "command": "command-window-or-terminal.open.nonwindows",
+                    "when": "(isLinux || isMac) && isFileSystemResource",
+                    "group": "navigation"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
